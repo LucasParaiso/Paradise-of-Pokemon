@@ -1,4 +1,4 @@
-<h1 class="m-5 mb-0">O #<?= $_POST['pokemonId']?> pokemon na pokedex é:</h1>
+<h1 class="m-5 mb-0">#<?= $_POST['pokemonId']?> pokemon in pokedex:</h1>
 
 <div class="container text-center">
     <div class="row row-cols-1 row-cols-sm-3 p-5 m-5 mt-0   justify-content-center">
