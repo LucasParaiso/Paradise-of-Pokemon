@@ -1,23 +1,33 @@
 <?php
 
-function resourceList($endpoint, $offset = null, $limit = null)
+function pokemons()
 {
-    $baseUrl = "https://pokeapi.co/api/v2/";
-
-    $url = $baseUrl . $endpoint . '/?limit=' . $limit . '&offset=' . $offset;
-
-    return json_decode(file_get_contents($url));
-}
-
-function pokemon($id) {
-    $url = "https://pokeapi.co/api/v2/pokemon/" . $id;
-    $pokemon = json_decode(file_get_contents($url));
-
+    $url = 'https://pokeapi.co/api/v2/pokemon?limit=150';
     $pokemonInfo = new stdClass();
-    $pokemonInfo->name = $pokemon->name;
-    $pokemonInfo->img = $pokemon->sprites->front_default;
+
+    if ($conteudo = file_get_contents($url)) {
+        $pokemons = json_decode($conteudo);
+
+        foreach ($pokemons->results as $key => $pokemon) {
+            $pokeNumber = $key + 1;
+            $pokeName = $pokemon->name;
+            $pokeImage = 'https://img.pokemondb.net/artwork/large/' . $pokeName . '.jpg';
+
+            $pokemonInfo->$pokeNumber = [
+                'name' => $pokeName,
+                'img' => $pokeImage
+            ];
+        }
+    }
 
     return $pokemonInfo;
 }
 
-?>
+function pokemon($pokeNumber)
+{
+    $baseUrl = "http://localhost:8000/api/pokemon.php/";
+
+    $url = $baseUrl . '?id=' . $pokeNumber;
+
+    return json_decode(file_get_contents($url));
+}
