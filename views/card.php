@@ -1,5 +1,5 @@
 <?php
-    $pokemon = isset($_POST['pokemonId']) ? $_POST['pokemonId'] : null;
+    $pokemon = isset($_POST['pokemonId']) ? pokemon($_POST['pokemonId']) : null;
 ?>
 
 <h1 class="m-5 mb-0">#<?= $pokemon->id ?> pokemon in pokedex:</h1>
