@@ -3,6 +3,8 @@
         <?php
 
         $pokemons = pokemons();
+        echo print_r($pokemons);
+        exit();
 
         foreach ($pokemons as $key => $pokemon) { ?>
             <div class='col my-2'>
